@@ -3901,7 +3901,7 @@ public class Core {
 	 * This method is used to map of files related to a slide
 	 * 
 	 * @param slideRef slide's path or UID
-	 * @param varargs  Array of optional arguments
+	 * @param pSessionID The session's ID
 	 *                 <p>
 	 *                 sessionID : First optional argument(String), default
 	 *                 value(null), session's ID
@@ -3909,9 +3909,9 @@ public class Core {
 	 * @return Map of all files related to a slide
 	 */
 	@SuppressWarnings("serial")
-	public static Map<String, Map<String, String>> getFilesForSlide(String slideRef, String... varargs) {
+	public static Map<String, Map<String, String>> getFilesForSlide(String slideRef, String pSessionID) {
 		// setting the default value when argument's value is omitted
-		String sessionID = varargs.length > 0 ? varargs[0] : null;
+		String sessionID = pSessionID.length() > 0 ? pSessionID : null;
 		// Obtain all files actually associated with a specific slide
 		// This is most relevant with slides that are defined by multiple files, like
 		// MRXS or VSI
