@@ -702,26 +702,26 @@ public class Core {
 	/**
 	 * This method is used to get root-directories available for a sessionID
 	 * 
-	 * @param varargs Array of optional arguments
+	 * @param sessionID Session's ID.
 	 *                <p>
 	 *                sessionID : First optional argument(String), default
 	 *                value(null), session's ID
 	 *                </p>
 	 * @return Array of root-directories available to a session's ID
 	 */
-	public static List<String> getRootDirectories(String... varargs) {
+	public static List<String> getRootDirectories(String sessionID) {
 		// setting the default value when argument's value is omitted
-		String sessionID = varargs.length > 0 ? varargs[0] : null;
+		String finalSessionID = sessionID.length() > 0 ? sessionID : null;
 		// Return a list of root-directories available to sessionID
-		sessionID = sessionId(sessionID);
+		finalSessionID = sessionId(finalSessionID);
 		try {
-			String url = apiUrl(sessionID, false) + "GetRootDirectories?sessionID=" + PMA.pmaQ(sessionID);
+			String url = apiUrl(finalSessionID, false) + "GetRootDirectories?sessionID=" + PMA.pmaQ(finalSessionID);
 			String jsonString = PMA.httpGet(url, "application/json");
 			List<String> rootDirs;
 			if (PMA.isJSONArray(jsonString)) {
 				JSONArray jsonResponse = PMA.getJSONArrayResponse(jsonString);
-				pmaAmountOfDataDownloaded.put(sessionID,
-						pmaAmountOfDataDownloaded.get(sessionID) + jsonResponse.length());
+				pmaAmountOfDataDownloaded.put(finalSessionID,
+						pmaAmountOfDataDownloaded.get(finalSessionID) + jsonResponse.length());
 				rootDirs = new ArrayList<>();
 				for (int i = 0; i < jsonResponse.length(); i++) {
 					rootDirs.add(jsonResponse.optString(i));
@@ -729,8 +729,8 @@ public class Core {
 				// return dirs;
 			} else {
 				JSONObject jsonResponse = PMA.getJSONObjectResponse(jsonString);
-				pmaAmountOfDataDownloaded.put(sessionID,
-						pmaAmountOfDataDownloaded.get(sessionID) + jsonResponse.length());
+				pmaAmountOfDataDownloaded.put(finalSessionID,
+						pmaAmountOfDataDownloaded.get(finalSessionID) + jsonResponse.length());
 				if (jsonResponse.has("Code")) {
 					if (PMA.logger != null) {
 						PMA.logger.severe("getrootdirectories() failed with error " + jsonResponse.get("Message"));
