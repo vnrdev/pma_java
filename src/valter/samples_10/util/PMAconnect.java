@@ -12,9 +12,10 @@ public class PMAconnect {
         private static String pmaCoreServer = Config.pmaCoreServer;
         private static String pmaCoreUser = Config.pmaCoreUser;
         private static String pmaCorePass = Config.pmaCorePass;
+        private static String sessionID;
         
         public static boolean connect() {            
-            String sessionID = Core.connect(pmaCoreServer, pmaCoreUser, pmaCorePass);
+            sessionID = Core.connect(pmaCoreServer, pmaCoreUser, pmaCorePass);
             if (sessionID == null) {
                 System.out.println("Unable to connect to PMA.core at specified location (" + pmaCoreServer + ")");
                 return false;
@@ -24,5 +25,9 @@ public class PMAconnect {
         
         public static String getPmaCoreServer(){
             return pmaCoreServer;
+        }
+        
+        public static String getSessionID() {
+            return sessionID;
         }
 }

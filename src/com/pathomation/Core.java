@@ -2201,16 +2201,16 @@ public class Core {
 	 * This method is used to get the text encoded by the barcode
 	 * 
 	 * @param slideRef slide's path or UID
-	 * @param varargs  Array of optional arguments
+	 * @param pSessionID The session's ID.
 	 *                 <p>
 	 *                 sessionID : First optional argument(String), default
 	 *                 value(null), session's ID
 	 *                 </p>
 	 * @return The barcode text
 	 */
-	public static String getBarcodeText(String slideRef, String... varargs) {
+	public static String getBarcodeText(String slideRef, String pSessionID) {
 		// setting the default value when arguments' value is omitted
-		String sessionID = varargs.length > 0 ? varargs[0] : null;
+		String sessionID = pSessionID.length() > 0 ? pSessionID : null;
 		// Get the text encoded by the barcode (if there IS a barcode on the slide to
 		// begin with)
 		sessionID = sessionId(sessionID);
