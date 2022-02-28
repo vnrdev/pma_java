@@ -3771,16 +3771,16 @@ public class Core {
 	 * This method is used to retrieve the annotations for slide slideRef
 	 * 
 	 * @param slideRef slide's path
-	 * @param varargs  Array of optional arguments
+	 * @param pSessionID  The session's ID
 	 *                 <p>
 	 *                 sessionID : First optional argument(String), default
 	 *                 value(null), session's ID
 	 *                 </p>
 	 * @return Annotations for a slide in a json Array format
 	 */
-	public static JSONArray getAnnotations(String slideRef, String... varargs) {
+	public static JSONArray getAnnotations(String slideRef, String pSessionID) {
 		// setting the default value when argument' value is omitted
-		String sessionID = varargs.length > 0 ? varargs[0] : null;
+		String sessionID = pSessionID.length() > 0 ? pSessionID : null;
 		// Retrieve the annotations for slide slideRef
 		sessionID = sessionId(sessionID);
 		if (slideRef.startsWith("/")) {
