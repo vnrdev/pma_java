@@ -449,7 +449,7 @@ public class Core {
 	/**
 	 * This method is used to get the API version in a list fashion
 	 * 
-	 * @param varargs Array of optional arguments
+	 * @param pPmaCoreUrl PMA.core URL
 	 *                <p>
 	 *                pmacoreURL : First optional argument(String), default
 	 *                value(Class field pmaCoreLiteURL), url of PMA.core instance
@@ -457,9 +457,9 @@ public class Core {
 	 * @return API version in a list fashion
 	 * @throws Exception If GetAPIVersion isn't available on the API
 	 */
-	public static List<Integer> getAPIVersion(String... varargs) throws Exception {
+	public static List<Integer> getAPIVersion(String pPmaCoreUrl) throws Exception {
 		// setting the default values when arguments' values are omitted
-		String pmaCoreURL = varargs.length > 0 ? varargs[0] : pmaCoreLiteURL;
+		String pmaCoreURL = pPmaCoreUrl.length() > 0 ? pPmaCoreUrl : pmaCoreLiteURL;
 		String url = PMA.join(pmaCoreURL, "api/json/GetAPIVersion");
 		if (PMA.debug) {
 			System.out.println(url);
