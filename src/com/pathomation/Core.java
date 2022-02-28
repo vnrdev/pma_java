@@ -389,16 +389,16 @@ public class Core {
 	/**
 	 * This method is used to get the version number
 	 * 
-	 * @param varargs Array of optional arguments
+	 * @param pPmaCoreURL PMA.core URL
 	 *                <p>
 	 *                pmaCoreURL : First optional argument(String), default
 	 *                value(Class field pmaCoreLiteURL), url of PMA.core instance
 	 *                </p>
 	 * @return Version number
 	 */
-	public static String getVersionInfo(String... varargs) {
+	public static String getVersionInfo(String pPmaCoreURL) {
 		// setting the default value when argument's value is omitted
-		String pmaCoreURL = varargs.length > 0 ? varargs[0] : pmaCoreLiteURL;
+		String pmaCoreURL = pPmaCoreURL.length() > 0 ? pPmaCoreURL : pmaCoreLiteURL;
 		// Get version info from PMA.core instance running at pmacoreURL.
 		// Return null if PMA.core not found running at pmacoreURL endpoint
 		// purposefully DON'T use helper function apiUrl() here:
