@@ -1177,16 +1177,16 @@ public class Core {
 	 * This method is used to get the fingerprint for a specific slide
 	 * 
 	 * @param slideRef slide's path
-	 * @param varargs  Array of optional arguments
+	 * @param pSessionID  The session's ID
 	 *                 <p>
 	 *                 sessionID : First optional argument(String), default
 	 *                 value(null), session's ID
 	 *                 </p>
 	 * @return Fingerprint of the slide
 	 */
-	public static String getFingerPrint(String slideRef, String... varargs) {
+	public static String getFingerPrint(String slideRef, String pSessionID) {
 		// setting the default value when arguments' value is omitted
-		String sessionID = varargs.length > 0 ? varargs[0] : null;
+		String sessionID = pSessionID.length() > 0 ? pSessionID : null;
 		// Get the fingerprint for a specific slide
 		sessionID = sessionId(sessionID);
 		String fingerprint;
