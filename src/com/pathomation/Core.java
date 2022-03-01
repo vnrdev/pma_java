@@ -673,7 +673,7 @@ public class Core {
 	 * and reachable This method works only for PMA.core, don't use it for PMA.start
 	 * for it will return always false
 	 * 
-	 * @param varargs Array of optional arguments
+	 * @param pSessionID The session's ID
 	 *                <p>
 	 *                sessionID : First optional argument(String), default
 	 *                value(null), session's ID
@@ -681,9 +681,9 @@ public class Core {
 	 * @return true if sessionID is valid and the server is online and reachable,
 	 *         false otherwise
 	 */
-	public static boolean ping(String... varargs) {
+	public static boolean ping(String pSessionID) {
 		// setting the default value when argument's value is omitted
-		String sessionID = varargs.length > 0 ? varargs[0] : null;
+		String sessionID = pSessionID.length() > 0 ? pSessionID : null;
 		sessionID = sessionId(sessionID);
 		String url = apiUrl(sessionID, false) + "Ping?sessionID=" + PMA.pmaQ(sessionID);
 		try {
