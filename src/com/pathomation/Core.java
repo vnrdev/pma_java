@@ -372,18 +372,28 @@ public class Core {
 	 * nothing (at least not a Pathomation software platform component) at all
 	 * (results in None)
 	 * 
-	 * @param varargs Array of optional arguments
+	 * @param pPmaCoreUrl PMA.core URL
 	 *                <p>
 	 *                pmaCoreURL : First optional argument(String), default
 	 *                value(Class field pmaCoreLiteURL), url of PMA.core instance
 	 *                </p>
 	 * @return Checks if there is a PMA.core.lite or PMA.core instance running
 	 */
-	public static Boolean isLite(String... varargs) {
+	public static Boolean isLite(String pPmaCoreUrl) {
 		// setting the default value when argument's value is omitted
-		String pmaCoreURL = varargs.length > 0 ? varargs[0] : pmaCoreLiteURL;
+		String pmaCoreURL = pPmaCoreUrl.length() > 0 ? pPmaCoreUrl : pmaCoreLiteURL;
 		// See if there's a PMA.core.lite or PMA.core instance running at pmacoreURL
 		return pmaIsLite(pmaCoreURL);
+	}
+                
+        /**
+         * Overloading to quickly fix erroring pervious methods
+         * 
+         * @return Checks if there is a PMA.core.lite or PMA.core instance running at pmaCoreLiteURL
+         */
+        public static Boolean isLite() {				
+		// See if there's a PMA.core.lite or PMA.core instance running at pmacoreURL
+		return pmaIsLite(pmaCoreLiteURL);
 	}
 
 	/**
