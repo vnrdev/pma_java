@@ -3677,22 +3677,20 @@ public class Core {
 	 * This method is used to get a Map of the forms available to fill out, either
 	 * system-wide (leave slideref to "null"), or for a particular slide
 	 * 
-	 * @param varargs Array of optional arguments
+	 * @param pSlideRef Slide's path
 	 *                <p>
 	 *                slideRef : First optional argument(String), default
 	 *                value(null), slide's path
-	 *                </p>
-	 *                <p>
-	 *                sessionID : Second optional argument(String), default
-	 *                value(null), session's ID
-	 *                </p>
+	 *                </p>*
+	 * @param pSessionID : Second optional argument(String), default
+	 *                value(null), session's ID               
 	 * @return Map of the forms available to fill out, either system-wide (leave
 	 *         slideref to "null"), or for a particular slide
 	 */
-	public static Map<String, String> getAvailableForms(String... varargs) {
+	public static Map<String, String> getAvailableForms(String pSlideRef, String pSessionID) {
 		// setting the default values when arguments' values are omitted
-		String slideRef = varargs.length > 0 ? varargs[0] : null;
-		String sessionID = varargs.length > 0 ? varargs[1] : null;
+		String slideRef = pSlideRef.length() > 0 ? pSlideRef : null;
+		String sessionID = pSessionID.length() > 0 ? pSessionID : null;
 		// See what forms are available to fill out, either system-wide (leave slideref
 		// to None), or for a particular slide
 		sessionID = sessionId(sessionID);
