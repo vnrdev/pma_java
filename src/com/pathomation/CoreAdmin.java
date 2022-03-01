@@ -13,6 +13,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import valter.models.admin.UserCreate;
 
 /**
  * Intended for PMA.core interactions related to administrative operations. Does
@@ -346,19 +347,18 @@ public class CoreAdmin {
 	 *                     </p>
 	 * @return True if the creation has succeeded, false otherwise
 	 */
-	public static boolean addUser(String admSessionID, String login, String firstName, String lastName, String email,
-			String pwd, Boolean... varargs) {
+	public static boolean addUser(UserCreate user) {
 		// setting the default value when argument's value is omitted
-		Boolean canAnnotate = varargs.length > 0 ? varargs[0] : false;
-		Boolean isAdmin = varargs.length > 1 ? varargs[1] : false;
-		Boolean isSuspended = varargs.length > 2 ? varargs[2] : false;
-		System.out.println("Using credentials from " + admSessionID);
+		Boolean canAnnotate = user.getCanAnnotate() ? user.getCanAnnotate() : false;
+		Boolean isAdmin = user.getIsAdmin() ? user.getIsAdmin() : false;
+		Boolean isSuspended = user.getIsSuspended() ? user.getIsSuspended() : false;
+		System.out.println("Using credentials from " + user.getAdmSessionID());
 
 		try {
-			String url = adminUrl(admSessionID, false) + "CreateUser";
-			String input = "{" + "\"sessionID\": \"" + admSessionID + "\"," + "\"user\": {" + "\"Login\": \"" + login
-					+ "\"," + "\"FirstName\": \"" + firstName + "\"," + "\"LastName\": \"" + lastName + "\","
-					+ "\"Password\": \"" + pwd + "\"," + "\"Email\": \"" + email + "\"," + "\"Administrator\": "
+			String url = adminUrl(user.getAdmSessionID(), false) + "CreateUser";
+			String input = "{" + "\"sessionID\": \"" + user.getAdmSessionID() + "\"," + "\"user\": {" + "\"Login\": \"" + user.getLogin()
+					+ "\"," + "\"FirstName\": \"" + user.getFirstName() + "\"," + "\"LastName\": \"" + user.getLastName() + "\","
+					+ "\"Password\": \"" + user.getPwd() + "\"," + "\"Email\": \"" + user.getEmail() + "\"," + "\"Administrator\": "
 					+ isAdmin + "," + "\"isSuspended\": " + isSuspended + "," + "\"CanAnnotate\": " + canAnnotate + "}"
 					+ "}";
 

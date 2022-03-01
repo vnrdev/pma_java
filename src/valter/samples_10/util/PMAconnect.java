@@ -30,4 +30,12 @@ public class PMAconnect {
         public static String getSessionID() {
             return sessionID;
         }
+        
+        public static String pmaCoreUser() {
+            return pmaCoreUser;
+        }
+        
+        public static String getPmaCorePass() {
+            return pmaCorePass;
+        }
 }
